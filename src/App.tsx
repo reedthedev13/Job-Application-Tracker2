@@ -6,25 +6,32 @@ import Dashboard from "./components/Dashboard";
 function App() {
   const [user, loading] = useAuthState(auth);
 
-  if (loading) return (
-    <div className="min-h-screen bg-[#1e1b17] text-[#fefae0] flex items-center justify-center">
-      Loading...
-    </div>
-  );
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-[#1b1b1f] text-[#fefefe] flex items-center justify-center">
+        <div className="text-lg animate-pulse">Loading...</div>
+      </div>
+    );
+  }
 
   return (
-    <div className="min-h-screen bg-[#1e1b17] text-[#fefae0]">
-      <header className="p-4 bg-[#d5bdaf] text-[#1e1b17] flex justify-between items-center shadow-md">
-        <h1 className="text-2xl font-bold tracking-wide">Job Application Tracker</h1>
-        <Auth />
+    <div className="min-h-screen bg-[#1b1b1f] text-[#fefefe]">
+      <header className="sticky top-0 z-10 backdrop-blur bg-[#2b2b31]/90 border-b border-[#3d3d42] shadow-md">
+        <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+          <h1 className="text-2xl md:text-3xl font-bold tracking-tight">
+            Job Application Tracker
+          </h1>
+          <Auth />
+        </div>
       </header>
 
-      <main className="p-4">
+      <main className="max-w-6xl mx-auto px-6 py-10">
         {user ? (
           <Dashboard />
         ) : (
-          <div className="text-center text-lg mt-10">
-            Please log in to continue.
+          <div className="text-center mt-20">
+            <h2 className="text-xl font-semibold mb-2">Welcome 👋</h2>
+            <p className="text-[#a6a6a6]">Please log in to continue.</p>
           </div>
         )}
       </main>

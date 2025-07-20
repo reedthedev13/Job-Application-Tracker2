@@ -16,7 +16,7 @@ import ApplicationCard from "./ApplicationCard";
 import ApplicationForm from "./ApplicationForm";
 
 const validStatuses = ["Applied", "Interviewing", "Offer", "Rejected"] as const;
-type Status = typeof validStatuses[number];
+type Status = (typeof validStatuses)[number];
 
 const Dashboard = () => {
   const [applications, setApplications] = useState<Application[]>([]);
@@ -92,31 +92,35 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#1e1b17] text-[#fefae0] p-6">
-      <div className="max-w-4xl mx-auto space-y-6">
-        <div className="flex justify-between items-center">
-          <h2 className="text-3xl font-bold">Job Applications</h2>
+    <div className="min-h-screen bg-[#1b1b1f] text-[#fefefe] p-6">
+      <div className="max-w-5xl mx-auto space-y-8">
+        <div className="flex justify-between items-center border-b border-[#3d3d42] pb-4">
+          <h2 className="text-3xl font-bold tracking-tight">
+            Job Applications
+          </h2>
           <button
             onClick={() => {
               setEditingApp(null);
               setShowForm(true);
             }}
-            className="bg-[#d5bdaf] text-[#1e1b17] px-4 py-2 rounded-xl font-semibold shadow-md hover:shadow-lg hover:scale-105 transition-all duration-200"
+            className="bg-[#ffb86b] text-[#1b1b1f] px-4 py-2 rounded-xl font-semibold shadow-md hover:shadow-lg hover:scale-105 transition-all duration-200"
           >
             + Add Application
           </button>
         </div>
 
         {(showForm || editingApp) && (
-          <ApplicationForm
-            onSubmit={editingApp ? updateApplication : addApplication}
-            initialData={editingApp ?? undefined}
-          />
+          <div className="bg-[#2b2b31] p-4 rounded-xl border border-[#3d3d42] shadow-md">
+            <ApplicationForm
+              onSubmit={editingApp ? updateApplication : addApplication}
+              initialData={editingApp ?? undefined}
+            />
+          </div>
         )}
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {applications.length === 0 && (
-            <p className="text-[#d5bdaf]">No applications yet.</p>
+            <p className="text-[#a6a6a6]">No applications yet.</p>
           )}
           {applications.map((app) => (
             <ApplicationCard
