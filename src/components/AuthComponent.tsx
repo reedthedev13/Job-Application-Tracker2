@@ -20,20 +20,32 @@ const AuthComponent = () => {
   if (loading) return <div>Loading...</div>;
 
   return user ? (
-    <div className="flex items-center space-x-4">
+  <div className="flex items-center space-x-4">
+    {user.photoURL ? (
       <img
-        src={user.photoURL ?? undefined}
+        src={user.photoURL}
         alt="Profile"
-        className="w-10 h-10 rounded-full"
+        className="w-10 h-10 rounded-full object-cover bg-[#23272f]"
       />
-      <span>{user.displayName}</span>
-      <button
-        onClick={logout}
-        className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600"
-      >
-        Logout
-      </button>
-    </div>
+    ) : (
+      <span className="w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-tr from-[#6366f1] to-[#06b6d4] text-white font-bold text-lg">
+        {user.displayName
+          ? user.displayName
+              .split(" ")
+              .map((n) => n[0])
+              .join("")
+              .toUpperCase()
+          : "?"}
+      </span>
+    )}
+    <span>{user.displayName}</span>
+    <button
+      onClick={logout}
+      className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600"
+    >
+      Logout
+    </button>
+  </div>
   ) : (
     <button
       onClick={signIn}

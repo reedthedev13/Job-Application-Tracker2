@@ -92,10 +92,10 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#1b1b1f] text-[#fefefe] p-6">
-      <div className="max-w-5xl mx-auto space-y-8">
-        <div className="flex justify-between items-center border-b border-[#3d3d42] pb-4">
-          <h2 className="text-3xl font-bold tracking-tight">
+    <div className="min-h-screen bg-gradient-to-br from-[#18181b] to-[#23232a] text-[#f3f4f6] p-6">
+      <div className="max-w-5xl mx-auto space-y-10">
+        <div className="flex justify-between items-center border-b border-[#23272f] pb-6">
+          <h2 className="text-3xl font-extrabold tracking-tight drop-shadow-sm raleway">
             Job Applications
           </h2>
           <button
@@ -103,14 +103,14 @@ const Dashboard = () => {
               setEditingApp(null);
               setShowForm(true);
             }}
-            className="bg-[#ffb86b] text-[#1b1b1f] px-4 py-2 rounded-xl font-semibold shadow-md hover:shadow-lg hover:scale-105 transition-all duration-200"
+            className="bg-gradient-to-tr from-[#6366f1] to-[#06b6d4] text-white px-5 py-2.5 rounded-xl font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#06b6d4]/60 raleway"
           >
             + Add Application
           </button>
         </div>
 
         {(showForm || editingApp) && (
-          <div className="bg-[#2b2b31] p-4 rounded-xl border border-[#3d3d42] shadow-md">
+          <div className="bg-[#23272f]/80 p-6 rounded-2xl border border-[#23272f] shadow-xl mb-6">
             <ApplicationForm
               onSubmit={editingApp ? updateApplication : addApplication}
               initialData={editingApp ?? undefined}
@@ -118,9 +118,11 @@ const Dashboard = () => {
           </div>
         )}
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
           {applications.length === 0 && (
-            <p className="text-[#a6a6a6]">No applications yet.</p>
+            <p className="text-[#a1a1aa] text-lg text-center col-span-full raleway">
+              No applications yet.
+            </p>
           )}
           {applications.map((app) => (
             <ApplicationCard
